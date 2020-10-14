@@ -17,6 +17,7 @@ class Question(models.Model):
     text = models.CharField(max_length=4096)
     topic = models.ForeignKey(Topic, on_delete=models.RESTRICT, db_column="topic")
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Answer(models.Model):
@@ -26,3 +27,4 @@ class Answer(models.Model):
     text = models.CharField(max_length=4096)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
