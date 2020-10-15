@@ -9,3 +9,11 @@
 {% else %}
     <p>No answers.</p>
 {% endif %}
+
+<h3>Опубликовать ответ:</h3>
+
+<form action="{% url 'question' question.id %}" method="post">
+    {% csrf_token %}
+    {{ answer_form.as_p }}
+    <input type="submit" value="Опубликовать ответ">
+</form>

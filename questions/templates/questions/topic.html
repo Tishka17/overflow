@@ -3,7 +3,7 @@
 {% if latest_questions %}
     <ul>
     {% for question in latest_questions %}
-        <li><a href="{% url 'get_question' question.id %}">{{ question.title }}</a></li>
+        <li><a href="{% url 'question' question.id %}">{{ question.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
