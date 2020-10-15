@@ -37,16 +37,7 @@
 
         <form action="{% url 'question' question.id %}" method="post">
             {% csrf_token %}
-            {% for field in answer_form %}
-            <div class="form-group">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-                {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            {% endfor %}
-
+            {% include "questions/form.html" with form=answer_form %}
             <input class="btn btn-primary" type="submit" value="Опубликовать ответ">
         </form>
     </li>

@@ -1,7 +1,16 @@
-<h3>Задать вопрос:</h3>
+{% extends 'questions/base.html' %}
+{% block title %} Тема: {{topic.title}} {% endblock %}
 
-<form action="{% url 'new_question' %}" method="post">
-    {% csrf_token %}
-    {{ question_form.as_p }}
-    <input type="submit" value="Задать вопрос">
-</form>
+{% block content %}
+<ul class="list-group  mt-2">
+    <li class="list-group-item">
+        <h5>Задать вопрос:</h5>
+
+        <form action="{% url 'new_question' %}" method="post">
+            {% csrf_token %}
+            {% include "questions/form.html" with form=question_form %}
+            <input type="submit" class="btn btn-primary" value="Задать вопрос">
+        </form>
+    </li>
+</ul>
+{% endblock %}

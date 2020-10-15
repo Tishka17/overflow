@@ -30,16 +30,8 @@
 
         <form action="{% url 'new_question' %}" method="post">
             {% csrf_token %}
-            {% for field in question_form %}
-            <div class="form-group">
-                {{ field.errors }}
-                {{ field.label_tag }} {{ field }}
-                {% if field.help_text %}
-                <p class="help">{{ field.help_text|safe }}</p>
-                {% endif %}
-            </div>
-            {% endfor %}
-            <input type="submit" value="Задать вопрос">
+            {% include "questions/form.html" with form=question_form %}
+            <input type="submit" class="btn btn-primary" value="Задать вопрос">
         </form>
     </li>
 </ul>
