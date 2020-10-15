@@ -1,0 +1,11 @@
+{{question.title}}
+
+{% if answers %}
+    <ul>
+    {% for answer in answers %}
+        <li>{{answer.text}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No answers.</p>
+{% endif %}
