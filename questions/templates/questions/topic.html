@@ -1,19 +1,46 @@
-<h2>Тема: {{topic.title}}</h2>
-<h3>Последние вопросы:</h3>
-{% if latest_questions %}
-    <ul>
+{% extends 'questions/base.html' %}
+{% block title %} Тема: {{topic.title}} {% endblock %}
+
+{% block content %}
+
+<div class="mt-2">
+    <h4 class="card-title">Тема: {{topic.title}}</h4>
+</div>
+
+
+<ul class="list-group  mt-2">
+    {% if latest_questions %}
     {% for question in latest_questions %}
-        <li><a href="{% url 'question' question.id %}">{{ question.title }}</a></li>
+    <a href="{% url 'question' question.id %}" class="list-group-item list-group-item-action">
+        <div class="w-100">
+            <small>@{{question.author.username}}</small>
+            <small class="text-muted">{{question.created_at}}</small>
+        </div>
+        <p class="mb-1">{{question.title}}</p>
+    </a>
     {% endfor %}
-    </ul>
-{% else %}
-    <p>No active questions.</p>
-{% endif %}
+    {% else %}
+    <li class="list-group-item">
+        Пока нет вопросов по этой теме
+    </li>
+    {% endif %}
 
-<h3>Задать вопрос:</h3>
+    <li class="list-group-item">
+        <h5>Задать вопрос:</h5>
 
-<form action="{% url 'new_question' %}" method="post">
-    {% csrf_token %}
-    {{ question_form.as_p }}
-    <input type="submit" value="Задать вопрос">
-</form>
+        <form action="{% url 'new_question' %}" method="post">
+            {% csrf_token %}
+            {% for field in question_form %}
+            <div class="form-group">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+                {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <input type="submit" value="Задать вопрос">
+        </form>
+    </li>
+</ul>
+{% endblock %}
