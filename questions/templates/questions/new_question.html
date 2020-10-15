@@ -1,0 +1,7 @@
+<h3>Задать вопрос:</h3>
+
+<form action="{% url 'new_question' %}" method="post">
+    {% csrf_token %}
+    {{ question_form.as_p }}
+    <input type="submit" value="Задать вопрос">
+</form>

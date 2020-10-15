@@ -1,10 +1,5 @@
-{% load bootstrap4 %}
-{% bootstrap_css %}
-{% bootstrap_javascript jquery='full' %}
-
-
 <h2>Тема: {{topic.title}}</h2>
-
+<h3>Последние вопросы:</h3>
 {% if latest_questions %}
     <ul>
     {% for question in latest_questions %}
@@ -14,3 +9,11 @@
 {% else %}
     <p>No active questions.</p>
 {% endif %}
+
+<h3>Задать вопрос:</h3>
+
+<form action="{% url 'new_question' %}" method="post">
+    {% csrf_token %}
+    {{ question_form.as_p }}
+    <input type="submit" value="Задать вопрос">
+</form>
