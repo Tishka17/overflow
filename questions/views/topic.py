@@ -1,16 +1,21 @@
 import logging
 
-from django.http import HttpResponse
 from django.shortcuts import render
 
 from questions.forms import QuestionForm
-from questions.models import Topic
+from questions.models import Topic, Question
 
 logger = logging.getLogger(__name__)
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the questions index.")
+    topics = Topic.objects.all()
+    latest_questions = Question.objects.all()[:5]
+    context = {
+        'latest_questions': latest_questions,
+        'topics': topics,
+    }
+    return render(request, 'questions/index.html', context)
 
 
 def get_topic(request, topic_key):

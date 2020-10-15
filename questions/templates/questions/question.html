@@ -3,9 +3,16 @@
 
 {% block content %}
 
-<div class="card mt-2">
+<div class="card mt-4">
     <div class="card-body">
-        <h5 class="card-title">{{question.title}}</h5>
+        <h5 class="card-title">
+            {{question.title}}
+            <a href="{% url 'get_topic' question.topic.key %}">
+                <span class="badge badge-info">
+                {{question.topic.title}}
+                </span>
+            </a>
+        </h5>
         <p class="card-text">{{question.text}}</p>
     </div>
     <div class="card-footer text-muted d-flex justify-content-sm-between">

@@ -1,0 +1,32 @@
+{% extends 'questions/base.html' %}
+{% block title %} Тема: {{topic.title}} {% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-body">
+        {% for topic in topics %}
+        <a class="btn btn-info" href="{% url 'get_topic' topic.key %}" role="button">{{topic.title}}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<ul class="list-group  mt-2">
+    {% for question in latest_questions %}
+    <a href="{% url 'question' question.id %}" class="list-group-item list-group-item-action">
+        <div class="w-100">
+            <small>
+                @{{question.author.username}}
+                <span class="badge badge-light">{{question.topic.title}}</span>
+            </small>
+            <small class="text-muted">{{question.created_at}}</small>
+        </div>
+        <p class="mb-1">{{question.title}}</p>
+    </a>
+    {% endfor %}
+</ul>
+
+<div class="card mt4">
+    <a class="btn btn-primary" href="{% url 'new_question' %}" role="button">Задать вопрос</a>
+</div>
+
+{% endblock %}
