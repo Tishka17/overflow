@@ -1,0 +1,53 @@
+{% extends 'questions/base.html' %}
+{% block title %} Регистрация в MyOverflow {% endblock %}
+
+{% block content %}
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title"> Регистрация нового пользователя</h5>
+
+        <form action="{% url 'new_question' %}" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="id_username">Имя пользователя:</label>
+                <input type="text" name="username" maxlength="150"
+                       autocapitalize="none" autocomplete="username"
+                       autofocus required id="id_username" class="form-control">
+                <small class="text-muted">
+                    Обязателен. Не больше 150 символов. Только буквы, цифры и @/./+/-/_
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_password1">Пароль:</label>
+                <input type="password" name="password1"
+                       autocomplete="new-password" required
+                       id="id_password1" class="form-control">
+                <small class="text-muted">
+                    <ul>
+                        <li>Пароль не должен быть похож на логин</li>
+                        <li>Пароль должен содержать минимум 8 символов</li>
+                        <li>Пароль не должен быть распространенным</li>
+                        <li>Пароль не может состоять только из цифр</li>
+                    </ul>
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="id_password2">Подтсверждение пароля:</label>
+                <input type="password" name="password2"
+                       autocomplete="new-password" required
+                       id="id_password2" class="form-control">
+                <small class="text-muted">
+                    Введите такой же пароль, как выше
+                </small>
+            </div>
+
+
+            <input type="submit" class="btn btn-primary" value="Зарегистрироваться">
+        </form>
+    </div>
+</div>
+{% endblock %}
