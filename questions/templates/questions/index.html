@@ -1,5 +1,5 @@
 {% extends 'questions/base.html' %}
-{% block title %} Тема: {{topic.title}} {% endblock %}
+{% block title %} My Overflow {% endblock %}
 
 {% block content %}
 <div class="card mt-4">
@@ -25,7 +25,7 @@
     {% endfor %}
 </ul>
 
-<div class="card mt4">
+<div class="card mt-4">
     <a class="btn btn-primary" href="{% url 'new_question' %}" role="button">Задать вопрос</a>
 </div>
 

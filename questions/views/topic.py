@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     topics = Topic.objects.all()
-    latest_questions = Question.objects.all()[:5]
+    latest_questions = Question.objects.order_by('-created_at').all()[:5]
     context = {
         'latest_questions': latest_questions,
         'topics': topics,
