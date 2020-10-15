@@ -8,6 +8,9 @@ class Topic(models.Model):
     key = models.CharField(primary_key=True, null=False, max_length=40)
     visible = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f'Topic("{self.title}", "{self.key}")'
+
 
 class Question(models.Model):
     class Meta:
@@ -19,6 +22,9 @@ class Question(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return f'Question("{self.title[:20]}...", "{self.topic_id}", {self.created_at:%Y-%m-%d %H:%M})'
+
 
 class Answer(models.Model):
     class Meta:
@@ -28,3 +34,6 @@ class Answer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Answer("{self.text[:20]}...", {self.created_at:%Y-%m-%d %H:%M})'
