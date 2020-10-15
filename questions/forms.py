@@ -10,4 +10,5 @@ class QuestionForm(forms.Form):
 
 
 class AnswerForm(forms.Form):
-    text = forms.CharField(label='Текст ответа', max_length=4096, widget=forms.Textarea())
+    text = forms.CharField(label='Текст ответа', max_length=4096,
+                           widget=forms.Textarea(attrs={"class": "form-control"}))
