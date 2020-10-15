@@ -9,7 +9,7 @@ class Topic(models.Model):
     visible = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'Topic("{self.title}", "{self.key}")'
+        return self.title
 
 
 class Question(models.Model):

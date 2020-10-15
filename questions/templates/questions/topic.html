@@ -24,15 +24,15 @@
         Пока нет вопросов по этой теме
     </li>
     {% endif %}
-
-    <li class="list-group-item">
-        <h5>Задать вопрос:</h5>
-
+</ul>
+<h4 class="mt-4">Задать вопрос</h4>
+<div class="card mt-2">
+    <div class="card-body">
         <form action="{% url 'new_question' %}" method="post">
             {% csrf_token %}
             {% include "questions/form.html" with form=question_form %}
             <input type="submit" class="btn btn-primary" value="Задать вопрос">
         </form>
-    </li>
-</ul>
+    </div>
+</div>
 {% endblock %}
